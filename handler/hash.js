@@ -25,7 +25,7 @@ module.exports = {
     crypto.randomBytes(64, function (err, salt) {
       if(err) return cb(err);
       salt = new Buffer(salt).toString('hex');
-      crypto.pbkdf2(pass, salt, iterations, keylen, function (err, hash) {
+      crypto.pbkdf2(pass, salt, iterations, keylen, 'sha512', function (err, hash) {
         if(err) return cb(err);
         hash = new Buffer(hash).toString('hex');
         return cb(null, salt, hash);
@@ -33,7 +33,7 @@ module.exports = {
     })
   },
   verify: function (pass, salt, cb) {
-    crypto.pbkdf2(pass, salt, iterations, keylen, function (err, hash) {
+    crypto.pbkdf2(pass, salt, iterations, keylen, 'sha512', function (err, hash) {
       if(err) return cb(err);
       hash = new Buffer(hash).toString('hex');
       return cb(null, hash);
