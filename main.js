@@ -16,8 +16,9 @@ const crypto = require('crypto');
 const qs = require('qs');
 
 //mongoose 连接数据库
+const promise = require('bluebird');
 const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
+mongoose.Promise = promise;
 mongoose.connect('mongodb://localhost:27017/test', { useMongoClient: true });
 
 //密码
