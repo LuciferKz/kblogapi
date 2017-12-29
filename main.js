@@ -20,7 +20,7 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/test');
 
 //密码
-const pass = require('pwd');
+// const pass = require('pwd');
 
 //数据库连接状态
 const db = mongoose.connection;
