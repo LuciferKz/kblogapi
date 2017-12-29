@@ -17,7 +17,7 @@ const qs = require('qs');
 
 //mongoose 连接数据库
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/test');
+mongoose.connect('mongodb://localhost:27017/test', { useMongoClient: true });
 
 //密码
 // const pass = require('pwd');
