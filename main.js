@@ -19,7 +19,7 @@ const qs = require('qs');
 const promise = require('bluebird');
 const mongoose = require('mongoose');
 mongoose.Promise = promise;
-mongoose.connect('mongodb://localhost:27017/test', { useMongoClient: true });
+mongoose.connect('mongodb://localhost:27017/kblog', { useMongoClient: true });
 
 //密码
 // const pass = require('pwd');
