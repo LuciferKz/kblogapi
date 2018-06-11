@@ -1,10 +1,9 @@
 const express = require('express');
 const handlerUser = require('../handler/user.js');
-
-const router = express.Router();
+const router = express.Router()
 
 router.use(function (req, res, next) {
-  console.log('Time', Date.now());
+  console.log('Log Time', Date.now());
   next();
 })
 
@@ -26,6 +25,12 @@ router.post('/login', function (req, res, next) {
   })
 })
 
+router.post('/loginToken', function (req, res, next) {
+  handlerUser.loginToken(req.body.token, function (result) {
+    res.json(result);
+  })
+})
+
 router.post('/signup', function (req, res, next) {
   handlerUser.register(req.body.username, req.body.password, function (result) {
     res.json(result);
@@ -33,7 +38,7 @@ router.post('/signup', function (req, res, next) {
 })
 
 router.post('/auth', function (req, res, next) {
-  handlerUser.requestAuth(req.body.username, req.body.token, function (result) {
+  handlerUser.requestAuth(req.body.id, req.headers.authorization, function (result) {
     res.json(result)
   })
 })

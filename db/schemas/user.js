@@ -7,9 +7,9 @@ const UserSchema = new mongoose.Schema({
   phone: Number,
   email: String,
   age: Number,
-  gendar: String,
+  gender: String,
   photo: String,
-  salt: String,
+  salt: String, // salt 登录加密
   createAt: {
     type: Date,
     default: Date.now()

@@ -24,17 +24,29 @@ const userExsit = function (name, cb){
   })
 }
 
-const requestAuth = function (name, token, cb) {
-  UserModel.fetchByName(name, function (err, user) {
+const requestAuth = function (id, token, cb) {
+  if (!id) return cb({
+    statusCode: RESPONSE_RESULT.STATUS.ERROR_RESULT,
+    message: RESPONSE_RESULT.MESSAGE.ERROR_USER_ID
+  })
+  UserModel.fetchById(id, function (err, user) {
+    if (err) return cb(err)
     // 存在则通过请求的密码和检索到的用户saltkey生成hash值
-    jwt.verify(token, user._id, function (err, decode) {
+    jwt.verify(token, user.salt, function (err, decode) {
+      console.log(err, decode)
       if(err) return cb({
         statusCode: RESPONSE_RESULT.STATUS.ERROR_RESULT,
         message: RESPONSE_RESULT.MESSAGE.ERROR_USER_EXPIRED
       });
       cb({
         statusCode: RESPONSE_RESULT.STATUS.SUCCESS,
-        message: RESPONSE_RESULT.MESSAGE.SUCCESS_AUTHENTICATE
+        message: RESPONSE_RESULT.MESSAGE.SUCCESS_AUTHENTICATE,
+        userData: {
+          id: user._id,
+          username: user.username,
+          photo: user.photo,
+          token: token,
+        }
       })
     })
   })
@@ -65,7 +77,7 @@ const fetchById = function (id, cb) {
           username: user.username,
           phone: user.phone,
           photo: user.photo,
-          email: user.email
+          email: user.email,
         }
       })
     }else{
@@ -91,8 +103,9 @@ const login = function (name, pass, cb){
         if(err) return cb(err);
         // 生成的hash值和用户hash值相同则登录成功，并返回用户信息
         if(hash == user.password){
+          // 通过jwt生成token
           let token = jwt.sign({id: user._id}, user.salt, {
-            expiresIn: 60*60*24 // 24小时
+            expiresIn: 60*60*2*1000 // 2小时
           });
           return cb({
             statusCode: RESPONSE_RESULT.STATUS.SUCCESS,
@@ -117,6 +130,10 @@ const login = function (name, pass, cb){
       })
     }
   })
+}
+
+const loginToken = function (token) {
+
 }
 
 // 用户注册

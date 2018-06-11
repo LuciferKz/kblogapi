@@ -15,13 +15,17 @@ const crypto = require('crypto');
 //url解析包
 const qs = require('qs');
 
-//mongoose 连接数据库
+// 第三方promise异步实现
 const promise = require('bluebird');
+//mongoose 连接数据库
 const mongoose = require('mongoose');
 mongoose.Promise = promise;
-mongoose.connect('mongodb://localhost:27017/kblog', { useMongoClient: true });
 
-//密码
+const dbAddress = process.env.NODE_ENV == 'development' ? 'mongodb://120.55.55.34:27017/kblog' : 'mongodb://localhost:27017/kblog'
+
+mongoose.connect(dbAddress, { useMongoClient: true });
+
+// 密码
 // const pass = require('pwd');
 
 //数据库连接状态
