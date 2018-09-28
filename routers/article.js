@@ -65,7 +65,6 @@ router.post('/fetch', function (req, res, next) {
   if (req.body.query) {
     handlerArticle.fetch(req.body.query, function (result) {
       res.json(result)
-      
     })
   } else {
     res.json({
