@@ -50,7 +50,7 @@ ArticleSchema.statics = {
     exec(cb)
   },
   fetch: function (query, cb) {
-    return this.fetch(query).
+    return this.find(query).
     exec(cb)
   }
 }
