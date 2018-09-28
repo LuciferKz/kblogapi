@@ -61,4 +61,17 @@ router.post('/remove', function (req, res, next) {
   }
 })
 
+router.post('/fetch', function (req, res, next) {
+  if (req.body.query) {
+    handlerArticle.fetch(query, function (result) {
+      res.json(result)
+    })
+  } else {
+    res.json({
+      statusCode: 10000,
+      message: '缺少查询条件'
+    })
+  }
+})
+
 module.exports = router

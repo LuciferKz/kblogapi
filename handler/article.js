@@ -55,7 +55,19 @@ const removeById = function (id, cb) {
   })
 }
 
+const fetch = function (query, cb) {
+  ArticleModel.fetch(query, function (err, articles) {
+    if (err) return cb(err)
+    return cb({
+      statusCode: RESPONSE_RESULT.STATUS.SUCCESS,
+      message: RESPONSE_RESULT.MESSAGE.SUCCESS_REQUEST,
+      articles: articles
+    })
+  })
+}
+
 module.exports = {
+  fetch,
   fetchAll,
   fetchById,
   insert,

@@ -48,6 +48,10 @@ ArticleSchema.statics = {
       _id: id
     }).
     exec(cb)
+  },
+  fetch: function (query, cb) {
+    return this.fetch(query).
+    exec(cb)
   }
 }
 
