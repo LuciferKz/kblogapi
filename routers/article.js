@@ -66,7 +66,7 @@ router.post('/fetch', function (req, res, next) {
     req.body.push(function (result) {
       res.json(result)
     })
-    handlerArticle.fetch().apply(null, req.body)
+    handlerArticle.fetch.apply(null, req.body)
   } else {
     res.json({
       statusCode: 10000,
