@@ -60,6 +60,7 @@ const fetch = function () {
   cb = params.splice(-1, 1);
   
   params.push(function (err, articles) {
+    console.log(articles)
     if (err) return cb(err)
     return cb({
       statusCode: RESPONSE_RESULT.STATUS.SUCCESS,

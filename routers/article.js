@@ -63,10 +63,11 @@ router.post('/remove', function (req, res, next) {
 
 router.post('/fetch', function (req, res, next) {
   if (req.body.length) {
+    console.log(req.body)
     req.body.push(function (result) {
       res.json(result)
     })
-    handlerArticle.fetch.apply(null, req.body)
+    handlerArticle.fetch.apply(handlerArticle, req.body)
   } else {
     res.json({
       statusCode: 10000,

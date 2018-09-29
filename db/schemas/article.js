@@ -52,6 +52,8 @@ ArticleSchema.statics = {
   fetch: function () {
     let params = [].slice.call(arguments),
     cb = params.splice(-1, 1);
+
+    console.log(params)
     return this.find.apply(this, params).
     exec(cb)
   }
