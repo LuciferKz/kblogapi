@@ -63,7 +63,6 @@ router.post('/remove', function (req, res, next) {
 
 router.post('/fetch', function (req, res, next) {
   if (req.body.length) {
-    console.log(req.body)
     req.body.push(function (result) {
       res.json(result)
     })

@@ -57,10 +57,9 @@ const removeById = function (id, cb) {
 
 const fetch = function () {
   let params = [].slice.call(arguments),
-  cb = params.splice(-1, 1);
+  cb = params.splice(-1, 1)[0];
   
   params.push(function (err, articles) {
-    console.log(articles)
     if (err) return cb(err)
     return cb({
       statusCode: RESPONSE_RESULT.STATUS.SUCCESS,
