@@ -55,8 +55,11 @@ const removeById = function (id, cb) {
   })
 }
 
-const fetch = function (query, projection, options, cb) {
-  ArticleModel.fetch(query, projection, options, function (err, articles) {
+const fetch = function () {
+  let params = [].slice.call(arguments),
+  cb = params.splice(-1, 1);
+  
+  params.push(function (err, articles) {
     if (err) return cb(err)
     return cb({
       statusCode: RESPONSE_RESULT.STATUS.SUCCESS,
@@ -64,6 +67,8 @@ const fetch = function (query, projection, options, cb) {
       articles: articles
     })
   })
+
+  ArticleModel.fetch.apply(ArticleModel, params)
 }
 
 module.exports = {
