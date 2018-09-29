@@ -55,8 +55,8 @@ const removeById = function (id, cb) {
   })
 }
 
-const fetch = function (query, cb) {
-  ArticleModel.fetch(query, function (err, articles) {
+const fetch = function (query, projection, options, cb) {
+  ArticleModel.fetch(query, projection, options, function (err, articles) {
     if (err) return cb(err)
     return cb({
       statusCode: RESPONSE_RESULT.STATUS.SUCCESS,

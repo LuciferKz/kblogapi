@@ -49,8 +49,11 @@ ArticleSchema.statics = {
     }).
     exec(cb)
   },
-  fetch: function (query, cb) {
-    return this.find(query).
+  fetch: function (query, projection, options, cb) {
+    // let params = [].slice.call(arguments),
+    // cb = params.splice(-1, 1);
+
+    return this.find(query, projection, options).
     exec(cb)
   }
 }
