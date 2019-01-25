@@ -5,7 +5,10 @@ const ArticleSchema = new mongoose.Schema({
   content: String,
   categoryId: String,
   author: String,
-  state: String,
+  state: {
+    type: Number,
+    default: 0 // 0: 未开放 | 1: 开放
+  },
   meta: {
     createAt: {
       type: Date,
