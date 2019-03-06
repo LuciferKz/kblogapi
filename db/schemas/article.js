@@ -52,11 +52,27 @@ ArticleSchema.statics = {
     }).
     exec(cb)
   },
-  fetch: function () {
-    let params = [].slice.call(arguments),
-    cb = params.splice(-1, 1)[0];
-    return this.find.apply(this, params).
-    exec(cb)
+  fetch: function (filter, cb) {
+    const aggregate = [{ $match: filter }]
+
+    if (typeof filter.skip === 'number') {
+      aggregate.push({ $skip: filter.skip })
+      delete filter.skip
+    }
+    if (typeof filter.limit === 'number') {
+      aggregate.push({ $limit: filter.limit })
+      delete filter.limit
+    }
+    
+    for (let key in filter) {
+      filter[key] = new RegExp(`${filter[key]}`)
+    }
+
+    return this.count().exec((err, count) => {
+      this.aggregate(aggregate).exec((err, articles) => {
+        cb(err, articles, count)
+      })
+    })
   }
 }
 
