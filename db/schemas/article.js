@@ -65,8 +65,14 @@ ArticleSchema.statics = {
     }
     
     for (let key in filter) {
-      filter[key] = new RegExp(`${filter[key]}`)
+      if (typeof filter[key] === 'string') {
+        filter[key] = new RegExp(`${filter[key]}`)
+      } else {
+        filter[key] = filter[key]
+      }
     }
+
+    console.log(aggregate)
 
     return this.count().exec((err, count) => {
       this.aggregate(aggregate).exec((err, articles) => {
