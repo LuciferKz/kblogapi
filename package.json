@@ -4,8 +4,8 @@
   "description": "my blog model",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development node main.js",
-    "pro": "cross-env NODE_ENV=production forever restart main.js -aw --watchDirectory /home/www/kblogapi -o /log/error.log"
+    "dev": "cross-env NODE_ENV=development node ./main.js",
+    "pro": "cross-env NODE_ENV=production forever restart ./main.js -aw --watchDirectory /home/www/kblogapi -o /log/error.log"
   },
   "author": "kim.zhang",
   "license": "ISC",
