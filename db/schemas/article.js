@@ -72,6 +72,7 @@ ArticleSchema.statics = {
       }
     }
 
+    aggregate.push({ $sort: { 'meta.updateAt': -1 } })
     console.log(aggregate)
 
     return this.count().exec((err, count) => {
