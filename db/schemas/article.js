@@ -55,6 +55,8 @@ ArticleSchema.statics = {
   fetch: function (filter, cb) {
     const aggregate = [{ $match: filter }]
 
+    aggregate.push({ $sort: { 'meta.updateAt': -1 } })
+
     if (typeof filter.skip === 'number') {
       aggregate.push({ $skip: filter.skip })
       delete filter.skip
@@ -71,9 +73,6 @@ ArticleSchema.statics = {
         filter[key] = filter[key]
       }
     }
-
-    aggregate.push({ $sort: { 'meta.updateAt': 1 } })
-    console.log(aggregate)
 
     return this.count().exec((err, count) => {
       this.aggregate(aggregate).exec((err, articles) => {
