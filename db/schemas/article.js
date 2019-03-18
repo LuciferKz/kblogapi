@@ -75,7 +75,9 @@ ArticleSchema.statics = {
     }
 
     return this.count().exec((err, count) => {
-      this.aggregate(aggregate).exec((err, articles) => {
+      this
+      .aggregate(aggregate)
+      .exec((err, articles) => {
         cb(err, articles, count)
       })
     })
