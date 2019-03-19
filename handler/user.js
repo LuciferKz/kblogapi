@@ -33,7 +33,7 @@ const requestAuth = function (id, token, cb) {
     if (err) return cb(err)
     // 存在则通过请求的密码和检索到的用户saltkey生成hash值
     jwt.verify(token, user.salt, function (err, decode) {
-      console.log(err, decode)
+      // console.log(err, decode)
       if(err) return cb({
         statusCode: RESPONSE_RESULT.STATUS.ERROR_RESULT,
         message: RESPONSE_RESULT.MESSAGE.ERROR_USER_EXPIRED

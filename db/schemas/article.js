@@ -54,29 +54,43 @@ ArticleSchema.statics = {
   },
   fetch: function (filter, cb) {
     const aggregate = [{ $match: filter }]
+    let skip = 0
+    let limit = 0
 
     aggregate.push({ $sort: { 'meta.updateAt': -1 } })
 
     if (typeof filter.skip === 'number') {
       aggregate.push({ $skip: filter.skip })
+      skip = filter.skip
       delete filter.skip
     }
     if (typeof filter.limit === 'number') {
       aggregate.push({ $limit: filter.limit })
+      limit = filter.limit
       delete filter.limit
     }
     
     for (let key in filter) {
       if (typeof filter[key] === 'string') {
         filter[key] = new RegExp(`${filter[key]}`)
-      } else {
-        filter[key] = filter[key]
-      }
+      } 
+      // else {
+      //   filter[key] = filter[key]
+      // }
     }
 
     return this.count().exec((err, count) => {
       this
-      .aggregate(aggregate)
+      // .aggregate(aggregate)
+      .find(filter, {
+        title: 1,
+        author: 1,
+        'meta.createAt': 1,
+        'meta.updateAt': 1
+      })
+      .sort({ 'meta.updateAt': -1 })
+      .skip(skip)
+      .limit(limit)
       .exec((err, articles) => {
         cb(err, articles, count)
       })

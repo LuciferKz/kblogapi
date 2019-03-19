@@ -3,7 +3,7 @@ const handlerUser = require('../handler/user.js');
 const router = express.Router()
 
 router.use(function (req, res, next) {
-  console.log('Log Time', Date.now());
+  // console.log('Log Time', Date.now());
   next();
 })
 
