@@ -23,6 +23,11 @@ const MESSAGE = {
   ERROR_CATEGORY_EXSIT: '文章类别已存在!',
   ERROR_ROLE_EXSIT: '角色已存在!',
   ERROR_USER_ID: '用户ID不正确',
+  SUCCESS_GET_PERMISSIONS: '成功获取权限列表!',
+  SUCCESS_INSERT_PERMISSION: '成功新建权限!',
+  SUCCESS_UPDATE_PERMISSION: '成功修改权限!',
+  SUCCESS_REMOVE_PERMISSION: '成功删除权限!',
+  ERROR_PERMISSION_EXSIT: '权限已存在!',
 }
 
 const STATUS = {
