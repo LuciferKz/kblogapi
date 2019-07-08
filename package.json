@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development node ./main.js",
-    "pro": "cross-env NODE_ENV=production pm2 start main.js",
-    "start": "cross-env NODE_ENV=production pm2 stop main.js pm2 start main.js"
+    "pro": "cross-env NODE_ENV=production pm2 start main.js"
   },
   "author": "kim.zhang",
   "license": "ISC",
