@@ -13,7 +13,8 @@ const RESPONSE_RESULT = require('./responseResult');
 // 判断用户是否存在
 const userExsit = function (name, cb){
   UserModel.fetchCount(name, function (err, count) {
-    if(count == 0){
+    console.log(err)
+    if(!count){
       return cb(null)
     }else{
       return cb({

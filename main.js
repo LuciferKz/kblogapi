@@ -21,7 +21,7 @@ const promise = require('bluebird');
 const mongoose = require('mongoose');
 mongoose.Promise = promise;
 
-const dbAddress = process.env.NODE_ENV == 'development' ? 'mongodb://root:123456@120.55.55.34:27017/kblog' : 'mongodb://root:123456@localhost:27017/kblog'
+const dbAddress = process.env.NODE_ENV == 'development' ? 'mongodb://zzk:123456@120.55.55.34:27017/kblog' : 'mongodb://zzk:123456@localhost:27017/kblog'
 
 mongoose.connect(dbAddress, { useMongoClient: true });
 
