@@ -19,7 +19,8 @@ const insert = function (article, cb) {
     if (err) return cb(err)
     return cb({
       statusCode: RESPONSE_RESULT.STATUS.SUCCESS,
-      message: RESPONSE_RESULT.MESSAGE.SUCCESS_INSERT_ARTICLE
+      message: RESPONSE_RESULT.MESSAGE.SUCCESS_INSERT_ARTICLE,
+      article
     })
   })
 }
@@ -40,7 +41,8 @@ const updateById = function (id, article, cb) {
     if (err) return cb(err)
     return cb({
       statusCode: RESPONSE_RESULT.STATUS.SUCCESS,
-      message: RESPONSE_RESULT.MESSAGE.SUCCESS_UPDATE_ARTICLE
+      message: RESPONSE_RESULT.MESSAGE.SUCCESS_UPDATE_ARTICLE,
+      article
     })
   })
 }
